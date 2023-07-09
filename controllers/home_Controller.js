@@ -1,5 +1,8 @@
 
 module.exports.home = function(req, res){
 
-	return res.end("<h1>I am from Home Controller File</h1>");
+	return res.render('ejsHome',{
+
+		title: "Home Page"
+	});
 }
