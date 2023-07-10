@@ -2,7 +2,10 @@ const exp = require('express');
 
 const app = exp();
 const port = 3700;
+const expressLayouts = require('express-ejs-layouts');
 
+	// Using expressLayouts
+	app.use(expressLayouts);
 	// set up the express router
 	app.use('/', require('./routes/routeIndex'));
 
