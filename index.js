@@ -4,8 +4,20 @@ const app = exp();
 const port = 3700;
 const expressLayouts = require('express-ejs-layouts');
 
+	// connecting to Database
+	const db = require('./config/mongoose')
+	
+	// telling the app assets folder location
+	app.use(exp.static('./assets'));
+
 	// Using expressLayouts
 	app.use(expressLayouts);
+
+	// extracting styles and scripts from the subfiles to layout.ejs file
+
+	app.set('layout extractStyles', true);
+	app.set('layout extractScripts', true);
+
 	// set up the express router
 	app.use('/', require('./routes/routeIndex'));
 
