@@ -1,5 +1,6 @@
 const exp = require('express');
-
+const cookie = require('cookie-parser');
+const bodyParser = require('body-parser');
 const app = exp();
 const port = 3700;
 const expressLayouts = require('express-ejs-layouts');
@@ -7,6 +8,11 @@ const expressLayouts = require('express-ejs-layouts');
 	// connecting to Database
 	const db = require('./config/mongoose')
 	
+	app.use(bodyParser.urlencoded({extended:false}));
+	app.use(exp.urlencoded({extended:false}));
+	// Using cookie parser
+
+	app.use(cookie());
 	// telling the app assets folder location
 	app.use(exp.static('./assets'));
 
