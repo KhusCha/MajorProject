@@ -13,6 +13,7 @@ router.use('/usersProfile', require('./routeProfile'));
 router.use('/account', require('./routeKonto'));
 router.use('/signIn', require('./routeSignIn'));
 router.use('/signUp', require('./routeSignUp'));
+router.post('/users/create', homeController.create);
 
 
 module.exports = router;

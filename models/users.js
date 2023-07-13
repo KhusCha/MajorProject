@@ -1,7 +1,7 @@
 
 const mongo = require('mongoose');
 
-const userSchema = new mongo.schema({
+const userSchema = new mongo.Schema({
 
 	email:{
 		type: String,
