@@ -14,6 +14,7 @@ router.use('/account', require('./routeKonto'));
 router.use('/signIn', require('./routeSignIn'));
 router.use('/signUp', require('./routeSignUp'));
 router.post('/users/create', homeController.create);
+router.post('/users/createSession', homeController.createSession);
 
 
 module.exports = router;
