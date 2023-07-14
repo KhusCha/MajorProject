@@ -15,6 +15,9 @@ const expressLayouts = require('express-ejs-layouts');
 	app.use(cookie());
 	// telling the app assets folder location
 	app.use(exp.static('./assets'));
+	// set up the view engine
+	app.set('view engine', 'ejs');
+	app.set('views', './views');
 
 	// Using expressLayouts
 	app.use(expressLayouts);
@@ -25,11 +28,9 @@ const expressLayouts = require('express-ejs-layouts');
 	app.set('layout extractScripts', true);
 
 	// set up the express router
-	app.use('/', require('./routes/routeIndex'));
+	app.use('/', require('./routes'));
 
-	// set up the view engine
-	app.set('view engine', 'ejs');
-	app.set('views', './views');
+	
 
 
 	app.get('/', function(req, res){
