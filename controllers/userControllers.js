@@ -4,9 +4,26 @@ const User = require('../models/users');
 
 module.exports.profile= function(req, res){
 
-	return res.render('profile',{
-		title: "Profile Page"
-	});
+	// return res.render('profile',{
+	// 	title: "Profile Page"
+	// });
+
+	if(req.cookies.User_id){
+		User.findById(req.cookies.User_id).then((user)=>{
+			if(user){
+				return res.render('profile',{
+					title: "Profile Page",
+					user:user
+				});
+
+			}else{
+				return res.redirect('/users/signIn');
+			}
+		}).catch( (err)=>{
+			console.log('Error in finding User', err);
+			return res.redirect('/users/signIn');
+		});
+	}
 };
 
 
@@ -84,7 +101,7 @@ module.exports.createSession = function(req, res){
 	// 		}
 	// });
 
-	User.findOne({name:req.body.name}).then(function(user){
+	User.findOne({name:req.body.name}).then((user)=>{
 			console.log(user);
 		if(user.password != req.body.password){
 				//Handle if password doesnot match
@@ -101,7 +118,7 @@ module.exports.createSession = function(req, res){
 			}
 
 
-	}).catch(function(err){
+	}).catch((err)=>{
 		console.error("Error in finding User, while Signing In"); return;
 	});
 	
