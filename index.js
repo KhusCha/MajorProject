@@ -25,7 +25,7 @@ const expressLayouts = require('express-ejs-layouts');
 	app.set('layout extractScripts', true);
 
 	// set up the express router
-	app.use('/', require('./routes/routeIndex'));
+	app.use('/', require('./routes'));
 
 	// set up the view engine
 	app.set('view engine', 'ejs');
