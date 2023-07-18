@@ -30,8 +30,7 @@ const expressLayouts = require('express-ejs-layouts');
 	app.set('layout extractStyles', true);
 	app.set('layout extractScripts', true);
 
-	// set up the express router
-	app.use('/', require('./routes'));
+	
 
 	// set up the view engine
 	app.set('view engine', 'ejs');
@@ -49,6 +48,8 @@ const expressLayouts = require('express-ejs-layouts');
 	}));
 	app.use(passport.initialize());
 	app.use(passport.session());
+	// set up the express router
+	app.use('/', require('./routes'));
 
 
 	app.get('/', function(req, res){

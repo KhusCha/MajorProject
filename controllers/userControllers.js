@@ -80,7 +80,7 @@ module.exports.createSession = function(req, res){
 		
 	// To do Later should go now, 17/07/23 17:55Uhr
 
-    return res.redirect('/');
+    return res.redirect('/home1');
 
 	
 
