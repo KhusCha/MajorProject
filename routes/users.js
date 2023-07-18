@@ -10,7 +10,7 @@ const userController = require('../controllers/userControllers');
 
 
 
-router.get('/profi', userController.profile);
+router.get('/profi', passport.checkAuthentication, userController.profile);
 router.get('/konto',userController.konto);
 router.get('/signIn', userController.signIn);
 router.get('/signUp',userController.signUp);

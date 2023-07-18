@@ -48,6 +48,7 @@ const expressLayouts = require('express-ejs-layouts');
 	}));
 	app.use(passport.initialize());
 	app.use(passport.session());
+	//app.use(passport.setAuthenticatedUser);
 	// set up the express router
 	app.use('/', require('./routes'));
 

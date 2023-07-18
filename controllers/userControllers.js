@@ -4,26 +4,26 @@ const User = require('../models/users');
 
 module.exports.profile= function(req, res){
 
-	// return res.render('profile',{
-	// 	title: "Profile Page"
-	// });
+	return res.render('profile',{
+		title: "Profile Page"
+	});
 
-	if(req.cookies.User_id){
-		User.findById(req.cookies.User_id).then((user)=>{
-			if(user){
-				return res.render('profile',{
-					title: "Profile Page",
-					user:user
-				});
+	// if(req.cookies.User_id){
+	// 	User.findById(req.cookies.User_id).then((user)=>{
+	// 		if(user){
+	// 			return res.render('profile',{
+	// 				title: "Profile Page",
+	// 				user:user
+	// 			});
 
-			}else{
-				return res.redirect('/users/signIn');
-			}
-		}).catch( (err)=>{
-			console.log('Error in finding User', err);
-			return res.redirect('/users/signIn');
-		});
-	}
+	// 		}else{
+	// 			return res.redirect('/users/signIn');
+	// 		}
+	// 	}).catch( (err)=>{
+	// 		console.log('Error in finding User', err);
+	// 		return res.redirect('/users/signIn');
+	// 	});
+	// }
 };
 
 
