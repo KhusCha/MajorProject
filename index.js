@@ -7,6 +7,12 @@ const expressLayouts = require('express-ejs-layouts');
 
 	// connecting to Database
 	const db = require('./config/mongoose')
+	// Importing express-session library
+	const session = require('express-session');
+	// importing passport library
+	const passport = require('passport');
+	// fetching passport strategy file from config folder
+	const passportStrategy = require('./config/passport-local-strategy');
 	
 	app.use(bodyParser.urlencoded({extended:false}));
 	app.use(exp.urlencoded({extended:false}));
@@ -30,6 +36,19 @@ const expressLayouts = require('express-ejs-layouts');
 	// set up the view engine
 	app.set('view engine', 'ejs');
 	app.set('views', './views');
+	app.use(session({
+		name: 'Codeial',
+		//To do change the secret before deployment in prod. phase
+		secret: 'blahsomething',
+		saveUninitialized: false,
+		resave: false,
+		cookie:{
+			maxAge:(1000*60*100)
+		}
+
+	}));
+	app.use(passport.initialize());
+	app.use(passport.session());
 
 
 	app.get('/', function(req, res){

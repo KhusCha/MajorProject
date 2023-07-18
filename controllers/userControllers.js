@@ -78,7 +78,9 @@ module.exports.create = function(req, res){
 
 module.exports.createSession = function(req, res){
 		
-	// To do Later
+	// To do Later should go now, 17/07/23 17:55Uhr
+
+    return res.redirect('/');
 
 	
 
