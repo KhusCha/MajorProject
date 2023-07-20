@@ -29,12 +29,18 @@ module.exports.profile= function(req, res){
 
 module.exports.signIn = function(req, res){
 
+		if(req.isAuthenticated()){
+			return res.redirect('/users/profi');
+		}
 	return res.render('userSignIn', {
 		title: "Codeial-SignIn"
 	});
 };
 module.exports.signUp = function(req, res){
 
+	if(req.isAuthenticated()){
+		return res.redirect('/users/profi');
+	}
 	return res.render('userSignUp', {
 
 		title: "Codeial- SignUp"
@@ -84,4 +90,18 @@ module.exports.createSession = function(req, res){
 
 	
 
-}	
+}
+
+module.exports.destroySession= function(req, res,next){
+	req.logout((err)=>{
+		if(err){
+			return next(err);
+		}else{
+			return res.redirect('/home1');
+			next();
+		}
+
+	})
+
+	return res.redirect('/home1');
+}

@@ -1,5 +1,25 @@
 
 <page-header>
 Page Header Section
+<ul>
+    <%if(locals.user){%>
+        <li>
+            <a href="/users/profi"><%=user.name%></a>
+            
+        </li>
+        <li>
+            <a href="/users/logOut">Ausloggen</a>
+        </li>
+        <%}else{%>
+
+            <li>
+                <a href="/users/signUp">sign-Up</a>
+                
+            </li>
+            <li>
+                <a href="/users/signIn">sign-In</a>
+            </li>
+            <%}%>
+</ul>
 
 </page-header>
