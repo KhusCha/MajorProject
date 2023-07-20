@@ -92,16 +92,24 @@ module.exports.createSession = function(req, res){
 
 }
 
-module.exports.destroySession= function(req, res,next){
-	req.logout((err)=>{
-		if(err){
-			return next(err);
-		}else{
-			return res.redirect('/home1');
-			next();
-		}
+// module.exports.destroySession= function(req, res,next){
+// 	req.logout((err)=>{
+// 		if(err){
+// 			return next(err);
+// 		}else{
+			
+// 			return res.redirect('/home1');
+			
+// 		}
 
-	})
+// 	})
+	
+// 	return res.redirect('/home1');
+// }
 
-	return res.redirect('/home1');
+module.exports.destroySession=function(req,res,next){
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/home1');
+      });
 }
