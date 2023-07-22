@@ -3,7 +3,38 @@ const cookie = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = exp();
 const port = 3700;
+const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+// in the tutorial video, npm install node-sass-middleware is used and it is deprecated,
+// as of 22.07.23
+// use either of these command npm install node-sass sass-middleware
+//or npm install sass-middleware
+const sassMiddleware = require('sass-middleware');
+
+
+	// Use sassMiddleware for Sass compilation
+	app.use(sassMiddleware({
+   	// Path to your Sass files
+	src:path.join(__dirname, 'assets', 'sass'), 
+    // Destination for compiled CSS files
+	dest:  'assets/css', 
+    // Set to true to see debug messages
+	debug: true, 
+   // Choose your desired output style (e.g., 'compressed', 'nested', 'expanded')
+	outputStyle: 'extended', 
+   // Prefix for compiled CSS files
+	prefix: '/css' 
+}));
+	// app.use(sassMiddleware({
+	// 	src:exp.static(path.join(__dirname, 'assets')),
+	// 	dest:'assets/css',
+	// 	debug:true,
+	// 	outputStyle:'extended',
+	// 	prefix:'/css'
+	// }));
+
+
+
 
 	// connecting to Database
 	const db = require('./config/mongoose')
