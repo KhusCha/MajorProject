@@ -5,29 +5,30 @@ const app = exp();
 const port = 3700;
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
-// in the tutorial video, npm install node-sass-middleware is used and it is deprecated,
-// as of 22.07.23
-// use either of these command npm install node-sass sass-middleware
-//or npm install sass-middleware
-const sassMiddleware = require('sass-middleware');
+// node-sass-middleware works with v16.15.0 version of node,
+
+const sassMiddleware = require('node-sass-middleware');
 
 
 	// Use sassMiddleware for Sass compilation
 	app.use(sassMiddleware({
    	// Path to your Sass files
-	src:path.join(__dirname, 'assets', 'sass'), 
+	src:path.join(__dirname, '/assets','scss'), 
     // Destination for compiled CSS files
-	dest:  'assets/css', 
+	dest:  path.join(__dirname, '/assets','css'),
     // Set to true to see debug messages
 	debug: true, 
    // Choose your desired output style (e.g., 'compressed', 'nested', 'expanded')
 	outputStyle: 'extended', 
    // Prefix for compiled CSS files
 	prefix: '/css' 
+
 }));
+
+
 	// app.use(sassMiddleware({
-	// 	src:exp.static(path.join(__dirname, 'assets')),
-	// 	dest:'assets/css',
+	// 	src: './assets/scss',
+	// 	dest:'./assets/css',
 	// 	debug:true,
 	// 	outputStyle:'extended',
 	// 	prefix:'/css'
