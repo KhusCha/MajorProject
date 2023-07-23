@@ -1,6 +1,15 @@
 
-<page-header>
-Page Header Section
+<page-header id ="layoutHeader">
+<nav>
+    <div class="mini-logo">
+        <p>
+            <a href='/home1'>
+                Codeial Home Page
+            </a>
+        </p>
+    </div>
+
+<div class ="auth-links">
 <ul>
     <%if(locals.user){%>
         <li>
@@ -21,5 +30,7 @@ Page Header Section
             </li>
             <%}%>
 </ul>
+</div>
+</nav>
 
 </page-header>

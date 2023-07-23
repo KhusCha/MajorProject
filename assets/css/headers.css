@@ -1,0 +1,19 @@
+#layoutHeader nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  background: #2196f3;
+  color: white;
+  box-shadow: 5px 5px 5px 5px lightgrey; }
+  #layoutHeader nav .mini-logo p {
+    margin: 5px;
+    font-size: 1.4rem;
+    font-weight: bold; }
+  #layoutHeader nav .auth-links ul {
+    margin: 10% 5px;
+    display: flex; }
+    #layoutHeader nav .auth-links ul li {
+      margin-right: 10px; }
+  #layoutHeader nav a {
+    color: white;
+    text-decoration: none; }

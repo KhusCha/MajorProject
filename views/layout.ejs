@@ -3,14 +3,20 @@
 <html>
 <head><title><%=title%></title>
 <link rel = "stylesheet" href = "/css/layout.css">
+<link rel="stylesheet"   href = "/css/headers.css">
+<link rel="stylesheet"   href =  "/css/footer.css">
 <%- style %>
 </head>
 <body>
 
 	
-	<br>
+	
 	<%-include('_pageHeader')%>
-	<%- body%>
+	<br>
+	<main id="layoutMain">
+		<%- body%>
+	</main>
+	
 	
 	<br>
 	<%- include('_pageFooter')%>
