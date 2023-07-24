@@ -5,13 +5,35 @@
 
 	<section id = "feed-posts">
 		<h4>Posts</h4>
-		<form id ="new-post-form" action="" method="POST">
+		<form id ="new-post-form" action="/posts/create" method="POST">
 
-			<textarea name="content" cols="30" row="10" placeholder = "TypeIn here"></textarea>
+			<textarea name="content" cols="30" row="10"  placeholder = "Typein here..." required ="true"></textarea>
 			<input type="submit" value="Post"></input>
 		</form>
 		
+		<div id="">
 
+			<ul>
+				<% for(post of posts){ %>
+				<li>
+					<p>
+					<%=post.content%>
+					<br>
+					<small><%=post.user%></small>
+					</p>
+				</li>
+				<%}%>
+			</ul>
+		</div>
 
 	</section>
+
+	<!-- <section id = "post-section">
+		<form action = "" method ="POST">
+			<textarea name = "content" cols = "25" row = "10" placeholder = "Type In..." required ="true"></textarea>
+			<input type = "submit" value ="POST">
+
+		</form>
+
+	</section> -->
 	

@@ -1,10 +1,19 @@
+// Importing Post from model
+
+const Post = require('../models/post');
+
 // render the home page
 module.exports.home = function(req, res){
 
 	/* console.log(req.cookies);
 	res.cookie('user_id',22); */
-	return res.render('ejsHome',{
+	Post.find({}, function(err, posts){
+		return res.render('ejsHome',{
 
-		title: "Home Page"
+			title: " Codeial Home Page",
+			posts: posts
+		});
+
 	});
+	
 }
