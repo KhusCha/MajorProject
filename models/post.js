@@ -2,15 +2,16 @@ const mongoMango = require('mongoose');
 
 const postSchema = new mongoMango.Schema(
     {
-    content: {
+         content: {
         type: String,
         required:true
-    },
-     user: {
+        },
+        user: {
         type: mongoMango.Schema.Types.ObjectId,
         ref: 'User'
         
-            }
+            
+         },
     },
     {timesStamps: true});
 

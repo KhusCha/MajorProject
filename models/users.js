@@ -20,6 +20,6 @@ const userSchema = new mongo.Schema({
 	}
 },{timestamps:true});
 
-const user = mongo.model('Users', userSchema);
+const User = mongo.model('User', userSchema);
 
-module.exports = user;
+module.exports = User;

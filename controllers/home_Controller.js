@@ -7,13 +7,33 @@ module.exports.home = function(req, res){
 
 	/* console.log(req.cookies);
 	res.cookie('user_id',22); */
-	Post.find({}, function(err, posts){
+	// Post.find({}, function(err, posts){
+	// 	return res.render('ejsHome',{
+
+	// 		title: " Codeial Home Page",
+	// 		posts: posts
+	// 	});
+
+	// });
+
+	//Populate the user of each post
+	Post.find({}).populate('user').exec(function(err, posts){
+
 		return res.render('ejsHome',{
 
 			title: " Codeial Home Page",
 			posts: posts
 		});
-
 	});
+		
 	
 }
+
+
+
+
+
+
+
+
+

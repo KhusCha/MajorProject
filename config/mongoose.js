@@ -1,7 +1,7 @@
 
 const mongo = require('mongoose');
 
-mongo.connect('mongodb://127.0.0.1:27017/codeialDevelopment',{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+mongo.connect('mongodb://127.0.0.1:27017/codeialDevelopment');
 
 const db = mongo.connection;
 
