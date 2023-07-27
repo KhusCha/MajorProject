@@ -1,6 +1,7 @@
 // Importing Post from model
 
 const Post = require('../models/post');
+const User = require('../models/users');
 
 // render the home page
 module.exports.home = function(req, res){
@@ -17,13 +18,16 @@ module.exports.home = function(req, res){
 	// });
 
 	//Populate the user of each post
-	Post.find({}).populate('user').exec(function(err, posts){
-
+	Post.find({}).populate('user').then(function( posts){
+		console.log(posts);
 		return res.render('ejsHome',{
 
 			title: " Codeial Home Page",
 			posts: posts
+			
 		});
+	}).catch(function(err){
+		console.log(err);
 	});
 		
 	

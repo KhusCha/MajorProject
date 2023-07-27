@@ -12,9 +12,16 @@
                 <li>
                     <a href="/home1">Home</a>
                 </li>
-                <li>
-                    <a href="/users/profi">Profile</a>
-                </li>
+                <% if(locals.user){ %>
+                    
+                    <li>
+                      <a href="/users/profi/<%=locals.user%>"><%= locals.user.name %></a>
+                    </li>
+                    <%}%>
+                       
+                       
+
+                   
             </ul>
         </nav>
     </div>

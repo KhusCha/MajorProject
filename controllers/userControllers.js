@@ -3,10 +3,22 @@
 const User = require('../models/users');
 
 module.exports.profile= function(req, res){
+	//let user = User.findById({_id:req.params.id});
+	// argument inside findOne can be passed either req.params or req.params._id
+	User.findOne(req.params._id).then(function(user){
+		//console.log('Userssss ',user);
+		return res.render('profile',{
+			title: "Profile Page",
+			user:user 
+			
+		});
 
-	return res.render('profile',{
-		title: "Profile Page"
+	}).catch(function(err){
+		console.log(err);
+		return;
 	});
+	
+	
 
 	// if(req.cookies.User_id){
 	// 	User.findById(req.cookies.User_id).then((user)=>{
