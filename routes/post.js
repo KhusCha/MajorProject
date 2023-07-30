@@ -1,7 +1,7 @@
 const exp = require('express');
 
 const router = exp.Router();
-const passport = require('../config/passport-local-strategy');
+const passport = require('passport');
 
 const postController = require('../controllers/postController');
 

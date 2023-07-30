@@ -8,12 +8,18 @@ const postSchema = new mongoMango.Schema(
         },
         user: {
         type: mongoMango.Schema.Types.ObjectId,
-        ref: 'User'
-        
+        ref: 'User'      
             
          },
+         // Include the ids of all comments in the post Schema itself
+         comments:[{
+               type: mongoMango.Schema.Types.ObjectId,
+               ref : 'Comment'
+         }]
+
     },
-    {timesStamps: true});
+    {timesStamps: true}
+    );
 
     const Post = mongoMango.model('Post',postSchema);
     module.exports = Post;

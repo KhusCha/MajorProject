@@ -18,8 +18,16 @@ module.exports.home = function(req, res){
 	// });
 
 	//Populate the user of each post
-	Post.find({}).populate('user').then(function( posts){
-		console.log(posts);
+	Post.find()
+	.populate('user')
+	.populate({
+		path:'comments',
+		populate:{
+			path: 'user'
+		}
+	})
+	.then(function( posts){
+		
 		return res.render('ejsHome',{
 
 			title: " Codeial Home Page",
@@ -29,15 +37,37 @@ module.exports.home = function(req, res){
 	}).catch(function(err){
 		console.log(err);
 	});
-		
 	
 }
 
 
 
+/*
 
 
+		
 
+*/
+
+/*Post.find({})
+	.populate('user')
+	.populate({
+		path:'comments',
+		populate:{
+			path:'user'
+		}
+	})
+	.exec(function(err, posts){
+		return res.render('ejsHome',{
+	
+			title: " Codeial Home Page",
+			posts: posts
+			
+		});
+	
+	})
+	
+	 */
 
 
 
