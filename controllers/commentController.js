@@ -1,7 +1,7 @@
 const Post = require('../models/post');
 const Comment = require('../models/comments');
 
-
+// Creating a comment on a existing Post
 module.exports.create = function(req, res){
 
     // Post.findById(req.body.post, function(err,post){
@@ -45,3 +45,29 @@ module.exports.create = function(req, res){
      }).catch(function(err){console.log(err, 'In Finding Post');});
 
 }
+
+
+// Deleting a comment
+
+module.exports.destroy = function(req, res){
+
+    Comment.findById(req.params.id).then(function(comment){
+    if(comment.user == req.user.id){
+    
+        let postId = comment.post;
+        comment.remove();
+        Post.findByIdAndUpdate(postId, {$pull:{comments:req.params.id}}).then(function(post){
+        return res.redirect('back');
+    }).catch(function(err){
+        console.log(err, 'In Finding the comment');
+    });
+    }else{
+        res.redirect('back');
+    }
+    
+    }).catch(function(err){
+    console.log(err, 'In deleting the Comment');
+    });
+    
+    
+    }// Main Function close
