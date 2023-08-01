@@ -20,9 +20,17 @@
 				<li>
 
 					<p>
+						<!-- Check if the user is signed in and that particular user has created 
+							that particular post
+						-->
+						<%if(locals.user && locals.user.id == post.user.id){%>
+						<small>
+							<a href="/posts/destroy/<%= post.id%>">X</a>
+						</small>
+						<%}%>
 					<%=post.content%>
 					<br>
-					<small><%=post.user.email%></small>				
+					<small><%=post.user.name%></small>				
 					
 					</p>
 					<div class ="post-comments">
@@ -41,7 +49,7 @@
 										<p>
 											<%=comment.content%>
 											<br>
-											<small><%=comment.user.email%></small>
+											<small><%=comment.user.name%></small>
 										</p>
 										<%}%>
 
