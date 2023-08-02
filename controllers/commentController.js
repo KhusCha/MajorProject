@@ -52,18 +52,37 @@ module.exports.create = function(req, res){
 module.exports.destroy = function(req, res){
 
     Comment.findById(req.params.id).then(function(comment){
-    if(comment.user == req.user.id){
+         Post.findById(comment.post).then(function(post){
+            console.log(post.user);
+            if(comment.user == req.user.id || post.user== req.user.id ){
+                // comment.post gives post id
+                let postId = comment.post;
+                comment.remove();
+                Post.findByIdAndUpdate(postId, {$pull:{comments:req.params.id}}).then(function(post){
+                return res.redirect('back');
+            }).catch(function(err){
+                console.log(err, 'In Finding the comment');
+            });
+            }else{
+                res.redirect('back');
+            }
+         }).catch(function(err){
+            console.log(err);
+         });
+        
     
-        let postId = comment.post;
-        comment.remove();
-        Post.findByIdAndUpdate(postId, {$pull:{comments:req.params.id}}).then(function(post){
-        return res.redirect('back');
-    }).catch(function(err){
-        console.log(err, 'In Finding the comment');
-    });
-    }else{
-        res.redirect('back');
-    }
+    // if(comment.user == req.user.id ){
+    //     // comment.post gives post id
+    //     let postId = comment.post;
+    //     comment.remove();
+    //     Post.findByIdAndUpdate(postId, {$pull:{comments:req.params.id}}).then(function(post){
+    //     return res.redirect('back');
+    // }).catch(function(err){
+    //     console.log(err, 'In Finding the comment');
+    // });
+    // }else{
+    //     res.redirect('back');
+    // }
     
     }).catch(function(err){
     console.log(err, 'In deleting the Comment');
