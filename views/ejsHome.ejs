@@ -1,39 +1,42 @@
+	<link rel="stylesheet" href="/css/home.css">
+	<!--<br><h1> Codeial Home Page up!!!!!!! aus EJS <%=title%> </h1>		<br> -->
+	<h5>Codeial Home Page</h5>
 
-	<br>
-	<h1> Codeial Home Page up!!!!!!! aus EJS <%=title%> </h1>	
-	<br>
-
-	<section id = "feed-posts">
-		<h4>Posts</h4>
-		<%if(locals.user){%>
-		<form id ="new-post-form" action="/posts/create" method="POST">
-
-			<textarea name="content" cols="30" row="10"  placeholder = "Typein here..." required ="true"></textarea>
-			<input type="submit" value="Post"></input>
-		</form>
-		<%}%>
-		
-		<div id="posts-list-container">
-
-			<ul>
-				<% for(post of posts){ %>
-				
-					<%-include('_post')-%>
-				<%}%>
-			</ul>
-		</div>
-
-	</section>
-
-	<section id = "user-friends">
-		<h4>Friends</h4>
-		<%for(u of allUsers){%>
-			<p>
-				<a href="/users/profi/<%=u.id%>"><%=u.name%></a>
-				
-			
-			</p>
+	<div id = homeEjs-container>
+		<section id = "feed-posts">
+			<h4>Posts</h4>
+			<%if(locals.user){%>
+			<form id ="new-post-form" action="/posts/create" method="POST">
+	
+				<textarea name="content" cols="30" row="10"  placeholder = "Typein here..." required ="true"></textarea>
+				<input type="submit" value="Post"></input>
+			</form>
 			<%}%>
+			
+			<div id="posts-list-container">
+	
+				<ul>
+					<% for(post of posts){ %>
+					
+						<%-include('_post')-%>
+					<%}%>
+				</ul>
+			</div>
+	
+		</section>
+	
+		<section id = "user-friends">
+			<h4>Friends</h4>
+			<%for(u of allUsers){%>
+				<p>
+					<a href="/users/profi/<%=u.id%>"><%=u.name%></a>
+					
+				
+				</p>
+				<%}%>
+	
+		</section>
 
-	</section>
+	</div>
+	
 	

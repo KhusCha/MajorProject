@@ -1,0 +1,13 @@
+#homeEjs-container{
+    display: flex;
+    #feed-posts{
+        width: 70%;
+        padding: 10px;
+    }
+    #user-friends{
+        width: 30%;
+        padding: 0.5px;
+        border-left: 1.5px dotted lightseagreen;
+        height: 100%;
+    }
+}
