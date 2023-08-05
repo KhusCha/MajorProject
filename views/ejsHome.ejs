@@ -17,65 +17,23 @@
 
 			<ul>
 				<% for(post of posts){ %>
-				<li>
-
-					<p>
-						<!-- Check if the user is signed in and that particular user has created 
-							that particular post
-						-->
-						<%if(locals.user && locals.user.id == post.user.id){%>
-						<small>
-							<a href="/posts/destroy/<%= post.id%>">X</a>
-						</small>
-						<%}%>
-					<%=post.content%>
-					<br>
-					<small><%=post.user.name%></small>				
-					
-					</p>
-					<div class ="post-comments">
-						<%if (locals.user){%>
-							<form action="/comments/create" method ="POST">
-								<input type = "text" name ="content" required="true" placeholder ="Type In.. Comments">
-								<input type ="hidden" name = "post" value = "<%=post._id%>">
-								<input type = "submit" value = "Add Comment">
-
-							</form>
-							<%}%>
-							<div class = "post-comments-list">
-								
-								<ul id = "post-comments-<%=post._id%>">
-									<% for(comment of post.comments){%>
-										<p>
-											<%if(locals.user && (locals.user.id == comment.user.id ||locals.user.id==post.user.id)){%>
-												<small>
-													<a href="/comments/destroy/<%= comment.id%>">X</a>
-												</small>
-												<%}%>
-
-											<%=comment.content%>
-											<br>
-											<small><%=comment.user.name%></small>
-										</p>
-										<%}%>
-
-								</ul>
-							</div>
-
-					</div>
-				</li>
+				
+					<%-include('_post')-%>
 				<%}%>
 			</ul>
 		</div>
 
 	</section>
 
-	<!-- <section id = "post-section">
-		<form action = "" method ="POST">
-			<textarea name = "content" cols = "25" row = "10" placeholder = "Type In..." required ="true"></textarea>
-			<input type = "submit" value ="POST">
+	<section id = "user-friends">
+		<h4>Friends</h4>
+		<%for(u of allUsers){%>
+			<p>
+				<a href="/users/profi/<%=u.id%>"><%=u.name%></a>
+				
+			
+			</p>
+			<%}%>
 
-		</form>
-
-	</section> -->
+	</section>
 	

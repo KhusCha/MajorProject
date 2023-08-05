@@ -11,6 +11,7 @@ const userController = require('../controllers/userControllers');
 
 
 router.get('/profi/:id', passport.checkAuthentication, userController.profile);
+router.post('/update/:id',passport.checkAuthentication, userController.profiUpdate);
 router.get('/konto',userController.konto);
 router.get('/signIn', userController.signIn);
 router.get('/signUp',userController.signUp);

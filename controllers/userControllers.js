@@ -3,13 +3,13 @@
 const User = require('../models/users');
 
 module.exports.profile= function(req, res){
-	//let user = User.findById({_id:req.params.id});
-	// argument inside findOne can be passed either req.params or req.params._id
-	User.findOne(req.params._id).then(function(user){
+	
+	// argument inside findById can be passed either req.params or req.params._id
+	User.findById(req.params.id).then(function(user){
 		//console.log('Userssss ',user);
 		return res.render('profile',{
 			title: "Profile Page",
-			user:user 
+			currentUser:user 
 			
 		});
 
@@ -37,6 +37,21 @@ module.exports.profile= function(req, res){
 	// 	});
 	// }
 };
+
+module.exports.profiUpdate = function(req, res){
+	if(req.user.id==req.params.id){
+		User.findByIdAndUpdate(req.params.id, req.body)
+		.then(function(user){
+
+			return res.redirect('back');
+		})
+		
+		.catch(function(){
+			return res.status(401).send('Unauthorized');
+		});
+	}
+
+}
 
 
 module.exports.signIn = function(req, res){

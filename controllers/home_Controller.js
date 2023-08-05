@@ -28,12 +28,20 @@ module.exports.home = function(req, res){
 	})
 	.then(function( posts){
 		
-		return res.render('ejsHome',{
+		User.find({}).then(function(users){
 
-			title: " Codeial Home Page",
-			posts: posts
-			
-		});
+			return res.render('ejsHome',{
+		
+						title: " Codeial Home Page",
+						posts: posts,
+						allUsers: users
+						
+					});
+		
+		}).catch(function(err){
+		console.log(err);
+		})
+		
 	}).catch(function(err){
 		console.log(err);
 	});
