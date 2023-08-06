@@ -3,7 +3,7 @@
 const Post = require('../models/post');
 const User = require('../models/users');
 
-// render the home page
+// render the home page, This code does work well.
 // module.exports.home = function(req, res){
 
 // 	/* console.log(req.cookies);

@@ -4,18 +4,48 @@ const Comment = require('../models/comments');
 
 
 // Action for creating a Post
-module.exports.create = function(req, res){
-    //console.log(req.user);
-    Post.create({
-        content:req.body.content,
-        user: req.user._id
-    }, function(err, post){
-        if(err){console.log('Error in creating a post'); return}
-        return res.redirect('back');
-    });
+// module.exports.create = function(req, res){
+//     //console.log(req.user);
+//     Post.create({
+//         content:req.body.content,
+//         user: req.user._id
+//     }, function(err, post){
+//         if(err){console.log('Error in creating a post'); return}
+//         return res.redirect('back');
+//     });
 
+
+// }
+
+
+            // Action for creating a Post unsing async and await
+            // Personally, I found code written with async and await looks
+            // cleaner and organized.
+
+module.exports.create = async function(req, res){
+  try{
+    await Post.create({
+      content: req.body.content,
+      user:req.user._id 
+    });
+    return res.redirect('back');
+
+  }catch(err){
+    console.log('Error/Fehler/Locha ', err);
+    return;
+  }
 
 }
+
+
+
+
+
+
+
+
+
+
 
 // Action for deleting a Post
 
@@ -53,6 +83,7 @@ module.exports.create = function(req, res){
    
 // }
 
+// Action for deleting a Post, an alternative way of code
 module.exports.destroy = function (req, res) {
     Post.findById(req.params.id)
       .then(function (post) {
