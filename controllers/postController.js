@@ -84,40 +84,67 @@ module.exports.create = async function(req, res){
 // }
 
 // Action for deleting a Post, an alternative way of code
-module.exports.destroy = function (req, res) {
-    Post.findById(req.params.id)
-      .then(function (post) {
-        if (!post) {
-          // If post not found, handle the error here (e.g., send an error response or redirect)
-          return res.redirect("back");
-        }
+// module.exports.destroy = function (req, res) {
+//     Post.findById(req.params.id)
+//       .then(function (post) {
+//         if (!post) {
+//           // If post not found, handle the error here (e.g., send an error response or redirect)
+//           return res.redirect("back");
+//         }
   
-        // Check if the post belongs to the currently logged-in user
-        if (post.user == req.user.id) {
-          // Remove the post using deleteOne()
-          Post.deleteOne({ _id: post.id }, function (err) {
-            if (err) {
-              console.log(err);
-              return res.redirect("back");
-            }
+//         // Check if the post belongs to the currently logged-in user
+//         if (post.user == req.user.id) {
+//           // Remove the post using deleteOne()
+//           Post.deleteOne({ _id: post.id }, function (err) {
+//             if (err) {
+//               console.log(err);
+//               return res.redirect("back");
+//             }
   
-            // Remove associated comments using deleteMany()
-            Comment.deleteMany({ post: post.id }, function (err) {
-              if (err) {
-                console.log(err);
-                return res.redirect("back");
-              }
+//             // Remove associated comments using deleteMany()
+//             Comment.deleteMany({ post: post.id }, function (err) {
+//               if (err) {
+//                 console.log(err);
+//                 return res.redirect("back");
+//               }
   
-              return res.redirect("back");
-            });
-          });
-        } else {
-          return res.redirect("back");
-        }
-      })
-      .catch(function (err) {
-        console.log(err)
+//               return res.redirect("back");
+//             });
+//           });
+//         } else {
+//           return res.redirect("back");
+//         }
+//       })
+//       .catch(function (err) {
+//         console.log(err)
 
-        return res.redirect("back");
-    });
-};
+//         return res.redirect("back");
+//     });
+// };
+
+// Action for deleting a Post using async await
+
+module.exports.destroy= async function(req, res){
+  try {
+        let post = await Post.findById(req.params.id);
+      // If post not found then return back to same page
+      if(!post){
+
+      return res.redirect('back');
+      }
+      // Check if the post belongs to the current logged in user
+
+      if(post.user == req.user.id){
+       // post.remove();
+      await Post.deleteOne({_id:post.id});
+      await Comment.deleteMany({post:post.id});
+      return res.redirect('back');
+      }else{
+        return res.redirect('back');
+      }
+    
+  } catch (err) {
+    console.log('Error ', err);
+    return;
+  }
+}
