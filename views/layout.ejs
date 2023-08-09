@@ -12,6 +12,12 @@
 	
 	
 	<%-include('_pageHeader')%>
+	<%if(flash.success && flash.success.length>0){%>
+		<h6>
+			<%= flash.success%>
+		</h6>
+		
+		<%}%>
 	<br>
 	<main id="layoutMain">
 		<%- body%>
