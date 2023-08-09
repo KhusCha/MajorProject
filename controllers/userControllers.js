@@ -157,7 +157,7 @@ module.exports.konto = function(req, res){
 module.exports.createSession = function(req, res){
 		
 	// To do Later should go now, 17/07/23 17:55Uhr
-	req.flash('success', 'Sie haben sich erfolgreich Angemeldet')
+	req.flash('logInSuccess', 'Sie haben sich erfolgreich Angemeldet');
     return res.redirect('/home1');
 
 	
@@ -182,7 +182,7 @@ module.exports.createSession = function(req, res){
 module.exports.destroySession=function(req,res,next){
     req.logout(function(err) {
         if (err) { return next(err); }
-		req.flash('success', 'Sie haben sich erfolgreich Abgemeldet');
+		req.flash('logOutSuccess', 'Sie haben sich erfolgreich Abgemeldet');
        return res.redirect('/home1');
 		
       });

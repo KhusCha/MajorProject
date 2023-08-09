@@ -3,8 +3,10 @@
     module.exports.setFlash = function(req, res, next){
 
         res.locals.flash = {
-            'success': req.flash('success'),
-            'error': req.flash('error')
+            'successForLogIn': req.flash('logInSuccess'),
+            'errorForLogIn': req.flash('error'),
+            'successForLogOut' : req.flash('logOutSuccess'),
+            'errorForLogOut': req.flash('error')
         }
         next();
     }

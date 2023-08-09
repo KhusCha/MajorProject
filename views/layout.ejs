@@ -1,31 +1,67 @@
 
 
-<html>
-<head><title><%=title%></title>
-<link rel = "stylesheet" href = "/css/layout.css">
-<link rel="stylesheet"   href = "/css/headers.css">
-<link rel="stylesheet"   href =  "/css/footer.css">
-<%- style %>
-</head>
-<body>
+		<html>
+		<head><title><%=title%></title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+		<link rel = "stylesheet" href = "/css/layout.css">
+		<link rel="stylesheet"   href = "/css/headers.css">
+		<link rel="stylesheet"   href =  "/css/footer.css">
+		<%- style %>
+		</head>
+		<body>
 
 	
 	
 	<%-include('_pageHeader')%>
-	<%if(flash.success && flash.success.length>0){%>
-		<h6>
-			<%= flash.success%>
-		</h6>
+	<!--
+			Standard version of LogIn and LogOut flash Messages
+		<%if(flash.successForLogIn && flash.successForLogIn.length>0 ||
+		flash.successForLogOut && flash.successForLogOut.length>0){%>
+			<h3 style="color: green;">
+				<%= flash.successForLogIn%>
+			</h3>
+					<h3 style="color: violet;">
+						<%= flash.successForLogOut%>
+					</h3>
 		
 		<%}%>
+	-->
+	
+	
 	<br>
-	<main id="layoutMain">
-		<%- body%>
-	</main>
+		<main id="layoutMain">
+			<%- body%>
+		</main>
 	
 	
 	<br>
 	<%- include('_pageFooter')%>
-<%- script %>
-</body>
-</html>
+	<%- script %>
+		<script>
+				<!-- For Success-->
+			<% if(flash.successForLogIn && flash.successForLogIn.length>0 ||
+			flash.successForLogOut && flash.successForLogOut.length>0){%>
+				new Noty({
+				theme: 'relax',
+				text: '<%=flash.successForLogIn %><%=flash.successForLogOut%>',
+				type: 'success',
+				layout: 'topRight',
+				timeout: 1600
+				}).show();
+				<%}%>
+			
+				<!-- For Error-->
+			<% if(flash.errorForLogIn && flash.errorForLogIn.length>0 ||
+			flash.errorForLogOut && flash.errorForLogOut.length>0){%>
+				new Noty({
+				theme: 'relax',
+				text: '<%=flash.errorForLogIn %><%=flash.errorForLogOut%>',
+				type: 'error',
+				layout: 'topRight',
+				timeout: 1600
+				}).show();
+				<%}%>
+		</script>
+		</body>
+		</html>
