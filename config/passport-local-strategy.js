@@ -4,31 +4,60 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/users');
 
 
-// Authentication Using Passport
-passport.use(new LocalStrategy({
+            // Authentication Using Passport
+            // passport.use(new LocalStrategy({
 
-    usernameField: 'email'
-},
-    function(email, password,done){
-       // find a user & establish the Identity
-       User.findOne({email:email}).then( function(user){
-       
-        if(!user || user.password!=password){
-            console.log('Invalid UserId/Password Combo');
-            return done(null, false);
-        }
-        return done(null, user);
-       }).catch(function(err){        
-            console.log('Error in finding the User -> to Passport.js');
-            return done(err);
-        
-       });
+            //     usernameField: 'email',
+            //     passReqToCallback: true 
+            // },
+            //     function(req, email, password,done){
+            //     // find a user & establish the Identity
+            //     User.findOne({email:email}).then( function(user,err){
+                
+                
+            //         if(!user || user.password!=password){
+            //             req.flash('Error ', 'Invalid UserId/Password Combo');
+            //             return done(null, false);
+            //         }
+            //         return done(null, user);
+            //     }).catch(function(err){        
+            //                     req.flash('Error ', err);
+            //                     return done(err);                    
+            //     });                
 
-        
+            //     } 
 
-    }    
+            // ));
 
-));
+            // Authentication using Passport, above code using async await
+            passport.use(new LocalStrategy(
+                {
+                    usernameField :'email',
+                    passReqToCallback: true
+                },
+
+                async function(req, email, password, done, err){
+
+                    try {
+                        let user = await User.findOne({email:email});
+                        // if(err){
+                        //     req.flash('Error ', err);
+                        //     return done(err);
+                        // }
+                        if(!user || user.password!=password)
+                        {
+                            req.flash('signInError', 'Invalid UserId/Password Combo');
+                            return done(null, false);
+                        }
+                        return done(null, user);
+                        
+                    } catch (err) {
+                        req.flash('Error', err);
+                        return done(err);
+                    }                  
+
+                }
+            ));
 
 // Serializing the user, to decide which key need to be kept in the cookies
 

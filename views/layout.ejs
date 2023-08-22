@@ -62,6 +62,42 @@
 				timeout: 1600
 				}).show();
 				<%}%>
+						<!-- For Invalid UserId or Password Error-->
+				<% if(flash.invalidUserIdorPassword && flash.invalidUserIdorPassword.length>0){%>
+				new Noty({
+				theme: 'relax',
+				text: '<%=flash.invalidUserIdorPassword %>',
+				type: 'error',
+				layout: 'topRight',
+				timeout: 1600
+				}).show();
+				<%}%>
+
+						<!-- For Successfull Post creation  -->
+				<% if(flash.postIncarnation && flash.postIncarnation.length>0){%>
+				new Noty({
+				theme: 'relax',
+				text: '<%=flash.postIncarnation %>',
+				type: 'success',
+				layout: 'topRight',
+				timeout: 1600
+				}).show();
+
+				<%}%>
+						<!-- For Post creation Error-->
+
+				<% if(flash.errPostCreation && flash.errPostCreation.length>0){%>
+				new Noty({
+				theme: 'relax',
+				text: '<%=flash.errPostCreation %>',
+				type: 'error',
+				layout: 'topRight',
+				timeout: 1600
+				}).show();
+
+				<%}%>
+
+
 		</script>
 		</body>
 		</html>

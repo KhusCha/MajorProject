@@ -27,12 +27,15 @@ module.exports.create = async function(req, res){
     await Post.create({
       content: req.body.content,
       user:req.user._id 
+      
     });
+    req.flash('postCreated', 'You have successfully created a Post');
     return res.redirect('back');
 
   }catch(err){
-    console.log('Error/Fehler/Locha ', err);
-    return;
+    req.flash('errPostCreation ', err);
+    return res.redirect('back');
+
   }
 
 }

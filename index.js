@@ -49,6 +49,8 @@ const customFlashMware = require('./config/flashMiddleware');
 	const MongoStore =   require('connect-mongo');
 	// fetching passport strategy file from config folder
 	const passportStrategy = require('./config/passport-local-strategy');
+	// Loading Passport using google Oauth
+	const passportUsingGouth = require('./config/passport-google-oauth2-strategy');
 	
 	app.use(bodyParser.urlencoded({extended:false}));
 	app.use(exp.urlencoded({extended:false}));
