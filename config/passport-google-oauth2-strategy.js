@@ -3,15 +3,14 @@ const passport = require('passport');
 const googleStrategy= require('passport-google-oauth20').Strategy;
 const crypto = require('crypto');
 const User = require('../models/users');
-const googleClientId = '296652164313-8cl66jicl4p0giokdmtgj1dlt1pbie5f.apps.googleusercontent.com';
-const googleClientSecret = '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';
+
 console.log('In Passport Google Oauth');
 
     // Tell Passport to use goole Oauth for logging in
     passport.use(new googleStrategy(
         {
-            clientID: '296652164313-8cl66jicl4p0giokdmtgj1dlt1pbie5f.apps.googleusercontent.com',
-            clientSecret:'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',
+            clientID: '',
+            clientSecret:'',
             callbackURL: 'http://localhost:3700/users/auth/google/callback',
             scope : ['profile', 'email'],
             // state: true
